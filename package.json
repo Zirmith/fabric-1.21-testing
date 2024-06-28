@@ -17,5 +17,11 @@
   "bugs": {
     "url": "https://github.com/Zirmith/fabric-1.21-testing/issues"
   },
-  "homepage": "https://github.com/Zirmith/fabric-1.21-testing#readme"
+  "homepage": "https://github.com/Zirmith/fabric-1.21-testing#readme",
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "express": "^4.19.2",
+    "fs": "^0.0.1-security",
+    "path": "^0.12.7"
+  }
 }
