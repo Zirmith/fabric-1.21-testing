@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Manager</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        /* Additional custom styles can be added here if needed */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="title">Server Manager</h1>
+           <!-- <div class="server-info">
+                <p class="server-name"<span id="serverName"></span></p>
+                <p class="server-description"></p><span id="serverDescription"></span></p>
+            </div>
+            <form id="updateForm" class="update-form">
+                <input type="text" id="nameInput" placeholder="Enter Server Name">
+                <input type="text" id="descriptionInput" placeholder="Enter Server Description">
+                <button type="submit" class="button">Update</button>
+            </form>-->
+        </header>
+
+        <main>
+            <section class="server-controls">
+                <button id="startButton" class="button">Start Server</button>
+                <button id="stopButton" class="button">Stop Server</button>
+                <button id="statusButton" class="button">Server Status</button>
+            </section>
+
+            <section class="console">
+                <h2>Console</h2>
+                <pre id="consoleOutput"></pre>
+                <form id="commandForm">
+                    <input type="text" id="commandInput" placeholder="Enter command">
+                    <button type="submit" class="button">Send Command</button>
+                </form>
+            </section>
+
+            <section class="server-properties">
+                <h2>Server Properties</h2>
+                <div id="propertiesList"></div>
+                <form id="updatePropertiesForm">
+                    <button type="submit" class="button">Update Properties</button>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Minecraft Server Manager</p>
+        </footer>
+    </div>
+
+    <script src="./client.js"></script>
+    <script>
+        // JavaScript code for interacting with server properties
+        async function fetchServerProperties() {
+            try {
+                const response = await fetch('/properties');
+                const propertiesData = await response.text(); // Fetch plain text
+
+                const propertiesList = document.getElementById('propertiesList');
+                propertiesList.innerHTML = '';
+
+                // Split text into lines
+                const lines = propertiesData.split('\n');
+
+                lines.forEach(line => {
+                    // Ignore comments and empty lines
+                    if (line.trim() === '' || line.trim().startsWith('#')) {
+                        return;
+                    }
+
+                    // Split key-value pairs
+                    const [key, value] = line.split('=');
+                    if (key && value !== undefined) {
+                        const propertyItem = document.createElement('div');
+                        propertyItem.classList.add('property-item');
+                        propertyItem.innerHTML = `
+                            <label for="${key}">${key}</label>
+                            <input type="text" id="${key}" name="${key}" value="${value}">
+                        `;
+                        propertiesList.appendChild(propertyItem);
+                    }
+                });
+            } catch (error) {
+                console.error('Error fetching server properties:', error);
+            }
+        }
+
+        async function updateServerProperties(event) {
+    event.preventDefault();
+
+    try {
+        // Get all property-item elements
+        const propertyItems = document.querySelectorAll('.property-item');
+        const properties = [];
+
+        // Iterate over each property-item to extract key-value pairs
+        propertyItems.forEach(item => {
+            // Get label name (key)
+            const label = item.querySelector('label');
+            const key = label.textContent.trim(); // Trim to remove any extra whitespace
+
+            // Get input value
+            const input = item.querySelector('input');
+            const value = input.value;
+            // Add key-value pair to properties array
+            properties.push({ key, value });
+        });
+
+        // Send properties as JSON in the request body
+        const response = await fetch('/updateProperties', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ properties })
+        });
+
+        if (response.ok) {
+            console.log('Server properties updated successfully');
+            fetchServerProperties(); // Update displayed properties after successful update
+        } else {
+            const errorMessage = await response.text();
+            console.error('Failed to update server properties:', errorMessage);
+        }
+    } catch (error) {
+        console.error('Error updating server properties:', error);
+    }
+}
+
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchServerProperties();
+            document.getElementById('updatePropertiesForm').addEventListener('submit', updateServerProperties);
+        });
+    </script>
+</body>
+</html>

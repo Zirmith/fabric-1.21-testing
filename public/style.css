@@ -1,0 +1,233 @@
+/* Reset styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(180deg, #050d14, #02070b);
+    color: #e0e0e0;
+}
+
+body::-webkit-scrollbar {
+    width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+    background: #0a0f14;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: #1a2a3a;
+    border-radius: 5px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1000px;
+    margin: 20px auto;
+    background: linear-gradient(180deg, #0a1016, #02070b);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 255, 0.5);
+    overflow: hidden;
+}
+
+.title {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #00b0ff;
+}
+
+.server-info {
+    margin-bottom: 20px;
+}
+
+.server-name,
+.server-description {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.server-description {
+    color: #00aaff;
+}
+
+.update-form {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.update-form input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #00b0ff;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #1a2a3a, #0a0f14);
+    color: #e0e0e0;
+}
+
+.update-form button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #006c9e, #004d70);
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.update-form button:hover {
+    background: linear-gradient(180deg, #00aaff, #0078b8);
+}
+
+.server-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.button {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #006c9e, #004d70);
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.button:hover {
+    background: linear-gradient(180deg, #00aaff, #0078b8);
+}
+
+.console {
+    background: linear-gradient(180deg, #1a2a3a, #0a0f14);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 255, 0.5);
+    overflow: hidden;
+}
+
+.console h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #00b0ff;
+}
+
+#consoleOutput {
+    width: 100%;
+    height: 300px;
+    padding: 10px;
+    background: linear-gradient(180deg, #0a0f14, #02070b);
+    color: #e0e0e0;
+    border: 1px solid #00b0ff;
+    border-radius: 4px;
+    overflow-y: scroll;
+}
+
+#consoleOutput::-webkit-scrollbar {
+    width: 10px;
+}
+
+#consoleOutput::-webkit-scrollbar-track {
+    background: #0a0f14;
+}
+
+#consoleOutput::-webkit-scrollbar-thumb {
+    background: #1a2a3a;
+    border-radius: 5px;
+}
+
+#commandForm {
+    display: flex;
+    margin-top: 10px;
+}
+
+#commandInput {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #00b0ff;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #1a2a3a, #0a0f14);
+    color: #e0e0e0;
+}
+
+#commandInput:focus {
+    outline: none;
+}
+
+#commandForm button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #006c9e, #004d70);
+    color: #e0e0e0;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+#commandForm button:hover {
+    background: linear-gradient(180deg, #00aaff, #0078b8);
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #00aaff;
+}
+
+.server-properties {
+    margin-top: 20px;
+}
+
+.server-properties h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #00b0ff;
+}
+
+#propertiesList {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+#propertiesList::-webkit-scrollbar {
+    width: 10px;
+}
+
+#propertiesList::-webkit-scrollbar-track {
+    background: #0a0f14;
+}
+
+#propertiesList::-webkit-scrollbar-thumb {
+    background: #1a2a3a;
+    border-radius: 5px;
+}
+
+.property-item {
+    margin-bottom: 10px;
+}
+
+.property-item label {
+    font-size: 16px;
+    color: #00b0ff;
+    margin-bottom: 5px;
+}
+
+.property-item input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #00b0ff;
+    border-radius: 4px;
+    background: linear-gradient(180deg, #1a2a3a, #0a0f14);
+    color: #e0e0e0;
+}
